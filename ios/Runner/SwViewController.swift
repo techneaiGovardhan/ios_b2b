@@ -1,5 +1,11 @@
     import Foundation
     import UIKit
+     
+     class SwViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+     {
+        
+     //@IBO weak var collectionView: UICollectionView!
+        
         let kScaleBoundLower: CGFloat = 0.5
         let kScaleBoundUpper: CGFloat = 2.0
     var lastVisibleIndex:IndexPath!
@@ -9,12 +15,6 @@
    
     var column = 5;
     var Iwidth:CGFloat=0;
-     class SwViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
-     {
-        
-     //@IBO weak var collectionView: UICollectionView!
-        
-        
         var collectionView:UICollectionView!
         var imageView:UIImageView!
         var scale: CGFloat = 0.5
@@ -97,7 +97,7 @@
         }
         else{
              
-            imageView  =     cell.contentView.subviews[0] as! UIImageView;
+            imageView  =     cell.contentView.subviews[0] as? UIImageView;
             image = UIImage(named: String(format: "%i", indexPath.row + 1))
             imageView.image = image;
             imageView.frame = CGRect(x:0,y:0,width:Iwidth,height:Iwidth)

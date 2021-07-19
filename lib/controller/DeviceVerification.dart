@@ -6,11 +6,15 @@ class DeviceVerification{
 
    void verifyMacAddress(String mac_address,String secrete_key,Function deviceVerificationResponse, BuildContext context) async{
      String url = macVerification;
-     var macbody ={
-        "macAddress":mac_address,
-        "secreteKey":secrete_key
-     };
-     http.post(Uri.parse(url),body:macbody).then((response) => deviceVerificationResponse(response.body,context));
+     var map = new Map<String,dynamic> ();
+     map['macAddress'] = mac_address;
+     map['secretKey'] = secrete_key;
+     // var macbody ={
+     //    "macAddress":mac_address,
+     //    "secreteKey":secrete_key
+     // };
+     http.post(Uri.parse(url),body:map,).
+     then((response) => deviceVerificationResponse(response.body,context));
 
    }
 

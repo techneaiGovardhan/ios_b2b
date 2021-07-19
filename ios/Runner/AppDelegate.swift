@@ -8,7 +8,14 @@ import Flutter
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
         ) -> Bool {
-
+        GeneratedPluginRegistrant.register(with: self)
+        
+        weak var registrar = self.registrar(forPlugin: "spinch_collection_view")
+        let factory = FLNativeViewFactory(messenger: registrar!.messenger())
+               self.registrar(forPlugin: "collection_view")!.register(
+                   factory,
+                   withId: "collectionview")
+        
         let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
 
         let flutterChannel = FlutterMethodChannel(name: "test_activity", binaryMessenger: controller.binaryMessenger)
@@ -25,7 +32,7 @@ import Flutter
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.makeKeyAndVisible()
     self.window.rootViewController = navigationController
-   navigationController.pushViewController(vc, animated: true)
+    navigationController.pushViewController(vc, animated: true)
     //self.parentController?.navigationController?.pushViewController(vc, animated: true)
 
                 })
